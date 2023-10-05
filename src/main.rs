@@ -15,7 +15,7 @@ fn main() {
 
         let user_choice = match menu_option.trim().parse() {
 
-            Ok(1) => { companies_vector = add_company();},
+            Ok(1) => { companies_vector = add_company(&companies_vector);},
             Ok(2) => { option_2(); },
             Ok(3) => { option_3(); },
             Ok(4) => { option_4(&companies_vector); },
@@ -44,14 +44,13 @@ fn menu() {
     println!("Print employees of all departments of company -> 4");
 }
 
-fn add_company() -> Vec<String>{
-    let mut v: Vec<String> = Vec::new();
-
+fn add_company(companies_vector: &Vec<String>) -> &Vec<String>{
+    
     let mut company_name = String::new();
     io::stdin().read_line(&mut company_name).expect("failed to read line");
 
-    v.push(company_name);
-    v
+    companies_vector.push(company_name);
+    &companies_vector
 }
 
 fn option_2() {
